@@ -1,11 +1,9 @@
 .section {
     width: 600px;
-   
 }
 
 .tab {
     display: flex;
-    
 }
 .list {
     margin: 0;
@@ -13,5 +11,5 @@
     list-style-type: none;
     max-height: 80vh;
     overflow-y: auto;
-    overflow-x:hidden
+    overflow-x:hidden;
 }
