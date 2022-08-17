@@ -1,0 +1,22 @@
+.container {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 720px;
+  min-height: 538px;
+  transform: translate(-50%, -50%);
+  border-radius: 40px;
+  background-color: #000;
+  z-index: 2;
+}
+
+.button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 0;
+  position: absolute;
+  right: 32px;
+  top: 52px;
+}
