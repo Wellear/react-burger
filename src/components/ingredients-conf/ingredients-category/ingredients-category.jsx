@@ -18,7 +18,7 @@ const IngredientsCategory = ({ category, ingredients }) => {
 };
 
 IngredientsCategory.propTypes = {
-  category: PropTypes.array.isRequired,
+  category: PropTypes.object.isRequired,
   ingredients: arrayOfIngredientsTypes
 };
 
