@@ -3,4 +3,4 @@ const categories = [
     {type: 'sauce', name: 'Соусы'},
     {type: 'main', name: 'Начинки'}
   ]
-  export default [categories]
+  export default categories

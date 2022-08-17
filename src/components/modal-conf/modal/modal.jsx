@@ -38,12 +38,15 @@ const Modal = ({ isOpen, setState, children }) => {
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.keyCode === 27) closeModal(e);
+      if (e.key ==='Escape') closeModal(e);
     };
-
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, []);
+    if(isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      return () => {
+        document.removeEventListener('keydown', handleEsc);
+      }
+    }
+  }, [isOpen]) 
 
   return !isOpen
     ? null
