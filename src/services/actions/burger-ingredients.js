@@ -1,6 +1,6 @@
 import {
     getIngredientsData
-} from "../../utils/constns";
+} from "../../utils/API";
 
 export const GET_INGRIDIENTS_REQUEST = "GET_INGRIDIENTS_REQUEST";
 export const GET_INGRIDIENTS_SUCCESS = "GET_INGRIDIENTS_SUCCESS";
