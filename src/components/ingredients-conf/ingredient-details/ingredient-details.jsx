@@ -1,12 +1,10 @@
-import Modal from "../../modal-conf/modal/modal";
-import PropTypes from "prop-types";
-import ingredientDetailsStyles from './ingredient-details.module.css';
+import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { itemTypes } from "../../../utils/constns";
 import IngredientInfo from "../ingredient-info/ingredient-info";
 
-const IngredientDetails = ({ isOpen, handleClose, item }) => {
+const IngredientDetails = ({ item }) => {
   return (
-    <Modal isOpen={isOpen} setState={() => handleClose(false)}>
+    <>
       <h1
         className={`text text_type_main-large pt-10 pr-10 pl-10 ${ingredientDetailsStyles.heading}`}
       >
@@ -30,13 +28,11 @@ const IngredientDetails = ({ isOpen, handleClose, item }) => {
           <IngredientInfo info={item.carbohydrates}>Углеводы, г</IngredientInfo>
         </ul>
       </div>
-    </Modal>
+    </>
   );
 };
 
 IngredientDetails.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
   item: itemTypes,
 };
 

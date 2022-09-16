@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ReactDOM from "react-dom";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
-import modalStyles from '../modal/modal.module.css';
+import modalStyles from "../modal/modal.module.css";
 
 const modalRoot = () => {
   const modalContainer = document.createElement("div");
@@ -12,64 +12,39 @@ const modalRoot = () => {
   return modalContainer;
 };
 
-const Modal = ({ isOpen, setState, children }) => {
-  const [modalElement, setModalElement] = useState(null);
-
-  useEffect(() => {
-    let modal = document.getElementById("modal-root");
-    let isModalSet = false;
-    if (!modal) {
-      isModalSet = !isModalSet;
-      modal = modalRoot();
-    }
-    setModalElement(modal);
-
-    return () => {
-      if (isModalSet && modal.parentNode) {
-        modal.parentNode.removeChild(modal);
-      }
-    };
-  }, []);
-
+const Modal = ({ onClose, children }) => {
   const closeModal = (e) => {
     e.stopPropagation();
-    setState(false);
+    onClose();
   };
 
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key ==='Escape') closeModal(e);
+      if (e.key === "Escape") closeModal(e);
     };
-    if(isOpen) {
-      document.addEventListener('keydown', handleEsc);
-      return () => {
-        document.removeEventListener('keydown', handleEsc);
-      }
-    }
-  }, [isOpen]) 
 
-  return !isOpen
-    ? null
-    : ReactDOM.createPortal(
-        <>
-          <ModalOverlay onClick={closeModal} />
-          <div className={modalStyles.container}>
-            <button
-              className={`${modalStyles.button} mt-10 mr-10`}
-              onClick={closeModal}
-            >
-              <CloseIcon type="primary" />
-            </button>
-            {children}
-          </div>
-        </>,
-        modalElement
-      );
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, []);
+
+  return ReactDOM.createPortal(
+    <>
+      <ModalOverlay onClick={closeModal} />
+      <div className={modalStyles.container}>
+        <button
+          className={`${modalStyles.button} mt-10 mr-10`}
+          onClick={closeModal}
+        >
+          <CloseIcon type="primary" />
+        </button>
+        {children}
+      </div>
+    </>,
+    modalRoot
+  );
 };
 
 Modal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  setState: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 
