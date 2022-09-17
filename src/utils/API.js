@@ -4,7 +4,7 @@ const checkResponse = (res) => {
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-export const getIngredients = () => {
+export const getIngredientsData = () => {
   return fetch(BASE_URL).then(checkResponse);
 };
 export const postOrder = async (orderId) => {
