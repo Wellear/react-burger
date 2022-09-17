@@ -15,7 +15,7 @@ const ingredientTypes = {
   _id: PropTypes.string.isRequired
 }
 
-const BASE_URL = "https://norma.nomoreparties.space/api/ingredients";
+const BASE_URL = "https://norma.nomoreparties.space/api";
 
 const itemTypes = PropTypes.shape(ingredientTypes).isRequired
 const arrayOfIngredientsTypes = PropTypes.arrayOf(itemTypes).isRequired

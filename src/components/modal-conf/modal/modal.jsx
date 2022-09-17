@@ -1,18 +1,12 @@
-
 import React from "react";
 import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import ModalOverlay from "../modal-overlay/modal-overlay";
-import modalStyles from "../modal/modal.module.css";
+import modalStyles from "./modal.module.css";
 
-const modalRoot = () => {
-  const modalContainer = document.createElement("div");
-  modalContainer.setAttribute("id", "modal-root");
-  document.body.appendChild(modalContainer);
-  return modalContainer;
-};
+const modalRoot = document.querySelector("#modal");
 
 const Modal = ({ onClose, children }) => {
   const closeModal = (e) => {

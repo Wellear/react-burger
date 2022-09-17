@@ -20,7 +20,7 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [totalPrice, setTotalPrice] = useState(0);
-  const orderId = useMemo(() => ingredients.map((item) => item._id), [
+  const orderId = useMemo(() => ingredients.map(item => item._id), [
     ingredients,
   ]);
 
@@ -100,7 +100,7 @@ const BurgerConstructor = () => {
         </div>
         {totalPrice === 0 ? (
           ""
-        ) : (
+        ) : 
           <Button
             type="primary"
             size="large"
@@ -108,7 +108,7 @@ const BurgerConstructor = () => {
           >
             Оформить заказ
           </Button>
-        )}
+      }
       </div>
     </section>
   );

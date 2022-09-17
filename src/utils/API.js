@@ -5,7 +5,7 @@ const checkResponse = (res) => {
 };
 
 export const getIngredientsData = () => {
-  return fetch(BASE_URL).then(checkResponse);
+  return fetch(`${BASE_URL}/ingredients`).then(checkResponse);
 };
 export const postOrder = async (orderId) => {
   return fetch(`${BASE_URL}/orders`, {
