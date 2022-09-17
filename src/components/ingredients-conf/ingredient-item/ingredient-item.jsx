@@ -1,3 +1,4 @@
+import React from "react";
 import itemStyle from "./ingredient.module.css";
 import { useDrag } from "react-dnd";
 import { useMemo } from "react";

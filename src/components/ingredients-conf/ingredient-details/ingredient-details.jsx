@@ -1,3 +1,4 @@
+import React from "react";
 import ingredientDetailsStyles from "./ingredient-details.module.css";
 import { itemTypes } from "../../../utils/constns";
 import IngredientInfo from "../ingredient-info/ingredient-info";

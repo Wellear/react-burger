@@ -1,3 +1,4 @@
+import React from "react";
 import dragIngredient from "./draggable-ingredients.module.css";
 import PropTypes from "prop-types";
 import {

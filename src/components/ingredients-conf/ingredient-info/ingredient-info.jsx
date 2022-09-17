@@ -1,3 +1,4 @@
+import React from "react";
 import ingredientInfoStyles from "./ingredient-info.module.css";
 import PropTypes from "prop-types";
 

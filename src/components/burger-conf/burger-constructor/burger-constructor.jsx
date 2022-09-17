@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ConstructorElement,
   CurrencyIcon,
@@ -44,7 +45,7 @@ const BurgerConstructor = () => {
 
   const onDropHandler = (item) => {
     const uniqueId = nanoid();
-    item.type != "bun"
+    item.type !== "bun"
       ? dispatch(addFilling(item, uniqueId))
       : dispatch(addBun(item, uniqueId));
   };

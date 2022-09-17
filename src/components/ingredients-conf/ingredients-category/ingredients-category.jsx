@@ -1,3 +1,4 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import IngredientsItem from "../ingredient-item/ingredient-item";
 import categoryStyle from "./ingredients-category.module.css";
