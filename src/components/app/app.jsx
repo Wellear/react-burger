@@ -1,15 +1,16 @@
 import AppHeader from "../app-header/app-header";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import styles from "./app.module.css";
 import BurgerIngredients from "../burger-conf/burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-conf/burger-constructor/burger-constructor";
-import { getIngredients } from "../../utils/API";
+import IngredientDetails  from "../ingredients-conf/ingredient-details/ingredient-details";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { resetModal } from "../../services/actions/modal";
 import { useDispatch, useSelector } from "react-redux";
 import { renderIngredients } from "../../services/actions/burger-ingredients";
 import OrderDetails from "../order-conf/order-details/order-details";
+import Modal from '../modal-conf/modal/modal';
 
 const App = () => {
   const dispatch = useDispatch();

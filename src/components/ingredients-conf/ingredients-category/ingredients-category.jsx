@@ -1,7 +1,7 @@
+import { useSelector } from "react-redux";
 import IngredientsItem from "../ingredient-item/ingredient-item";
 import categoryStyle from "./ingredients-category.module.css";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 
 const IngredientsCategory = ({ category }) => {
   const ingredientsList = useSelector(
