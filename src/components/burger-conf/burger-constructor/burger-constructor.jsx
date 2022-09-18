@@ -20,8 +20,8 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [totalPrice, setTotalPrice] = useState(0);
-  const orderId = useMemo(() => ingredients.map((item) => item._id), [
-    ingredients,
+  const orderId = useMemo(() => [bun._id, ...ingredients.map((item) => item._id), bun._id], [
+    ingredients, bun
   ]);
 
   useEffect(() => {

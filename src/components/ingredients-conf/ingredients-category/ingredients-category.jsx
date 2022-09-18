@@ -23,7 +23,7 @@ const IngredientsCategory = ({ category }) => {
 };
 
 IngredientsCategory.propTypes = {
-  category: PropTypes.object.isRequired,
+  category: PropTypes.shape.isRequired,
 };
 
 export default IngredientsCategory;

@@ -18,11 +18,14 @@ export const renderOrder = (orderId) => async (dispatch) => {
                 type: GET_ORDER_SUCCESS,
                 payload: res
             });
-            dispatch({
-                type: SET_MODAL,
-                payload: res,
-                content: "order"
-            });
+            
+            if (res.success) {
+                dispatch({
+                    type: SET_MODAL,
+                    payload: res,
+                    content: "order"
+                });
+            }
         })
         .catch(() => dispatch({
             type: GET_ORDER_FAILED
