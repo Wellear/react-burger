@@ -27,9 +27,11 @@ const OrderDetails = ({ orderData }) => {
 
 OrderDetails.propTypes = {
   orderData: PropTypes.shape({
-  name: PropTypes.shape.isRequired,
-  order: PropTypes.shape.isRequired,
-  success: PropTypes.shape.isRequired,
+    name: PropTypes.string.isRequired,
+    success: PropTypes.bool.isRequired,
+    order: PropTypes.shape({
+      number: PropTypes.number.isRequired,
+    }),
   }).isRequired,
 };
 

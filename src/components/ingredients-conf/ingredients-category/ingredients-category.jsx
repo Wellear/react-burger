@@ -23,7 +23,10 @@ const IngredientsCategory = ({ category }) => {
 };
 
 IngredientsCategory.propTypes = {
-  category: PropTypes.shape.isRequired,
+  category: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+}).isRequired,
 };
 
 export default IngredientsCategory;
