@@ -13,8 +13,7 @@ const IngredientInfo = ({ info, children }) => {
 
 IngredientInfo.propTypes = {
   info: PropTypes.number.isRequired,
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default IngredientInfo;
-// ?????????????????????

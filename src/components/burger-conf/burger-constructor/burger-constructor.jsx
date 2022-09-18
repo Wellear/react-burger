@@ -20,7 +20,7 @@ const BurgerConstructor = () => {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const [totalPrice, setTotalPrice] = useState(0);
-  const orderId = useMemo(() => ingredients.map(item => item._id), [
+  const orderId = useMemo(() => ingredients.map((item) => item._id), [
     ingredients,
   ]);
 
@@ -98,9 +98,11 @@ const BurgerConstructor = () => {
           <p className="text text_type_digits-medium mr-2">{totalPrice}</p>
           <CurrencyIcon />
         </div>
-        {totalPrice === 0 ? (
-          ""
-        ) : 
+        {bun.length === 0 || ingredients.length === 0 ? (
+          <Button type="primary" size="large" disabled>
+            Оформить заказ
+          </Button>
+        ) : (
           <Button
             type="primary"
             size="large"
@@ -108,7 +110,7 @@ const BurgerConstructor = () => {
           >
             Оформить заказ
           </Button>
-      }
+        )}
       </div>
     </section>
   );

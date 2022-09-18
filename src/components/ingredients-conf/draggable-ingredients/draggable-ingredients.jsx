@@ -22,7 +22,7 @@ const DraggableIngredients = ({ item, index }) => {
     dispatch(removeFilling(uniqueId));
   };
 
-  const [, drop] = useDrop({
+  const [,drop] = useDrop({
     accept: "item",
     hover(item) {
       if (!ref.current) {
@@ -35,7 +35,7 @@ const DraggableIngredients = ({ item, index }) => {
     },
   });
 
-  const [, drag] = useDrag({
+  const [,drag] = useDrag({
     type: "item",
     item: { ...item, index },
     collect: (monitor) => ({
