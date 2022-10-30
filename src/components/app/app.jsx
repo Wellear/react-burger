@@ -28,7 +28,7 @@ import { getCookie } from "../../utils/cookie";
 const App = () => {
   const dispatch = useDispatch();
   const { ingredients, isLoading, hasError } = useSelector(
-    (store) => store.burgerIngredients
+    (store) => store.burgeringredients
   );
   const { isModalOpen, type } = useSelector((store) => store.modal);
   const info = useSelector((store) => store.orderDetails.info);
@@ -37,7 +37,7 @@ const App = () => {
   const cookie = getCookie("token");
 
   const location = useLocation();
-  const background = location.state.background;
+  const background = (location.state && location.state.background) ? location.state.background : "";
   const history = useHistory();
 
   useEffect(() => {
