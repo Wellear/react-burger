@@ -27,7 +27,7 @@ const ProfilePage = () => {
   const { isLoading } = useSelector((store) => store.auth);
 
   const location = useLocation();
-  const background = location.state?.background;
+  const background = (location.state && location.state.background) ? location.state.background : "";
 
   useEffect(() => {
     dispatch(getUserAction());

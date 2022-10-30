@@ -6,10 +6,10 @@ const OrderStats = () => {
   const { orders, total, totalToday } = useSelector((store) => store.orders);
 
   const ordersDone = orders
-    ?.filter((order) => order.status === "done")
+    .filter((order) => order.status === "done")
     .slice(0, 20);
   const ordersPending = orders
-    ?.filter((order) => order.status === "pending")
+    .filter((order) => order.status === "pending")
     .slice(0, 20);
 
   return (
@@ -18,7 +18,7 @@ const OrderStats = () => {
         <div className="mr-9">
           <p className="text text_type_main-medium pb-6">Готовы:</p>
           <ul className={styles.columns}>
-            {ordersDone?.map((order) => {
+            {ordersDone.map((order) => {
               return (
                 <li
                   className={`text text_type_digits-default pb-2 ${styles.ordersDone}`}
@@ -33,7 +33,7 @@ const OrderStats = () => {
         <div>
           <p className="text text_type_main-medium pb-6">В работе:</p>
           <ul className={styles.columns}>
-            {ordersPending?.map((order) => {
+            {ordersPending.map((order) => {
               return (
                 <li
                   className="text text_type_digits-default pb-2"

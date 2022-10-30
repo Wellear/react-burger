@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ingredient-image.module.css";
+import styles from "../ingredients-image/ingredients-image.module.css";
 
 const IngredientImage = ({ image, alt }) => {
   return (

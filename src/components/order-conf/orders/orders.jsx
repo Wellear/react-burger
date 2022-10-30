@@ -12,7 +12,7 @@ const Orders = () => {
   return (
     <ul className={`${styles.list} custom-scroll`}>
       {orders &&
-        orders?.map((order) => {
+        orders.map((order) => {
           return (
             <li key={order._id} className={`${styles.item} mb-4`}>
               <Link

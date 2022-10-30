@@ -8,7 +8,7 @@ import Modal from "../modal-conf/modal/modal";
 import IngredientDetails from "../ingredients-conf/ingredient-details/ingredient-details";
 import { useDispatch, useSelector } from "react-redux";
 import { renderIngredients } from "../../services/actions/burger-ingredients";
-import OrderDetails from "../burger-constructor/order-details/order-details";
+import OrderDetails from "../../components/order-conf/order-details/order-details";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { resetModal } from "../../services/slices/modal";
@@ -37,7 +37,7 @@ const App = () => {
   const cookie = getCookie("token");
 
   const location = useLocation();
-  const background = location.state?.background;
+  const background = location.state.background;
   const history = useHistory();
 
   useEffect(() => {

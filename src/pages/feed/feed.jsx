@@ -17,7 +17,7 @@ const Feed = () => {
   const { wsConnected } = useSelector((store) => store.orders);
 
   const location = useLocation();
-  const background = location.state?.background;
+  const background = (location.state && location.state.background) ? location.state.background : "";
 
   useEffect(() => {
     dispatch(wsConnectionOpen());

@@ -5,16 +5,15 @@ import { useHistory, useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { formatDate } from "../../../utils/formatDate";
 import { statusFormat } from "../../../utils/statusFormat";
-import OrderIngredients from "";
+import OrderIngredients from "../order-ingredients/order-ingredients";
 import styles from "./order-info.module.css";
 
 const OrderInfo = () => {
   const { id } = useParams();
-  const orders = useSelector((store) => store.orders.orders);
-  const order = orders?.find((order) => order._id === id);
-  const ingredients = useSelector(
-    (store) => store.burgerIngredients.ingredients
-  );
+    const orders = useSelector(store => store.orders.orders);
+    const order = orders.find(order => order._id === id);
+    const ingredients = useSelector(store => store.burgerIngredients.ingredients);
+
 
   const history = useHistory();
   const location = useLocation();
@@ -25,15 +24,15 @@ const OrderInfo = () => {
   }, [location.pathname, history]);
 
   const orderIngredients = useMemo(() => {
-    return order?.ingredients.map((id) => {
-      return ingredients?.find((item) => {
+    return order.ingredients.map((id) => {
+      return ingredients.find((item) => {
         return item._id === id;
       });
     });
-  }, [order?.ingredients, ingredients]);
+  }, [order.ingredients, ingredients]);
 
   const orderTotal = useMemo(() => {
-    return orderIngredients?.reduce((sum, item) => {
+    return orderIngredients.reduce((sum, item) => {
       if (item.type === "bun") {
         return (sum += item.price * 2);
       }
@@ -44,7 +43,7 @@ const OrderInfo = () => {
   const ingredientsSet = Array.from(new Set(orderIngredients));
 
   const count = (item) => {
-    return orderIngredients?.filter((ingredient) => {
+    return orderIngredients.filter((ingredient) => {
       return item === ingredient;
     }).length;
   };
@@ -73,7 +72,7 @@ const OrderInfo = () => {
       </p>
       <h3 className="text text_type_main-medium pb-6">Состав:</h3>
       <ul className={`${styles.list} custom-scroll `}>
-        {ingredientsSet?.map((item) => {
+        {ingredientsSet.map((item) => {
           return (
             <OrderIngredients item={item} count={count(item)} key={item._id} />
           );

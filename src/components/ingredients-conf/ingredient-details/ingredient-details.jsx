@@ -7,10 +7,8 @@ import { useSelector } from "react-redux";
 
 const IngredientDetails = () => {
   const { id } = useParams();
-  const ingredients = useSelector(
-    (store) => store.burgerIngredients.ingredients
-  );
-  const item = ingredients?.find((item) => item._id === id);
+  const ingredients = useSelector(store => store.burgerIngredients.ingredients);
+  const item = ingredients.find((item) => item._id === id);
 
   const history = useHistory();
   const location = useLocation();

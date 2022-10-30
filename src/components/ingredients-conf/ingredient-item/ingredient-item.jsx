@@ -9,7 +9,7 @@ import {
 import { itemTypes } from "../../../utils/constns";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setModal } from "";
+import { setModal } from "../../../services/slices/modal";
 
 import { Link, useLocation } from "react-router-dom";
 

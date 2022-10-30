@@ -27,7 +27,7 @@ const LoginPage = () => {
   };
 
   return cookie ? (
-    <Redirect to={location?.state?.from || "/"} />
+    <Redirect to={location.state.from || "/"} />
   ) : (
     <section className={styles.container}>
       <h2 className="text text_type_main-medium mb-6">Вход</h2>

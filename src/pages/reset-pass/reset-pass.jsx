@@ -7,7 +7,7 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import styles from "../common.module.css";
+import styles from "../pages.module.css";
 import { resetPasswordAction } from "../../services/actions/auth";
 import { getCookie } from "../../utils/cookie";
 import { useForm } from "../../hooks/useForm";
