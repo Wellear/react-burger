@@ -4,3 +4,4 @@ const categories = [
     {type: 'main', name: 'Начинки'}
   ]
   export default categories
+  

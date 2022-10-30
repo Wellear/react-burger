@@ -14,10 +14,13 @@ const ingredientTypes = {
   __v: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired
 }
-
+const ITEM_DISPLAY = 48;
+const MAX_ITEMS = 6;
 const BASE_URL = "https://norma.nomoreparties.space/api";
-
+const AUTH_URL = `${BASE_URL}/auth`;
+const WS_ORDERS_ALL = 'wss://norma.nomoreparties.space/orders/all';
+const WS_ORDERS = 'wss://norma.nomoreparties.space/orders';
 const itemTypes = PropTypes.shape(ingredientTypes).isRequired
 const arrayOfIngredientsTypes = PropTypes.arrayOf(itemTypes).isRequired
 
-export { BASE_URL,itemTypes,arrayOfIngredientsTypes};
+export { BASE_URL,itemTypes,arrayOfIngredientsTypes,AUTH_URL,WS_ORDERS_ALL,WS_ORDERS,MAX_ITEMS,ITEM_DISPLAY};

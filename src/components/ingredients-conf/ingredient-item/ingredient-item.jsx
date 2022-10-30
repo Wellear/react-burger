@@ -8,14 +8,18 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import { itemTypes } from "../../../utils/constns";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_MODAL } from "../../../services/actions/modal";
+
+import { setModal } from "";
+
+import { Link, useLocation } from "react-router-dom";
 
 const IngredientsItem = ({ item }) => {
   const { bun, ingredients } = useSelector((store) => store.burgerConstructor);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleIngredientDetailsModal = () => {
-    dispatch({ type: SET_MODAL, payload: item, content: "ingredient" });
+    dispatch(setModal({ item, content: "ingredient" }));
   };
 
   const counter = useMemo(
@@ -27,7 +31,7 @@ const IngredientsItem = ({ item }) => {
               .length;
       return count;
     },
-    [bun, ingredients]
+    [bun, ingredients, item._id]
   );
 
   const [, dragRef] = useDrag({
@@ -39,22 +43,31 @@ const IngredientsItem = ({ item }) => {
   });
 
   return (
-    <li
-      className={`${itemStyle.item} mb-8`}
-      onClick={handleIngredientDetailsModal}
-      ref={dragRef}
-      draggable
+    <Link
+      to={{
+        pathname: `/ingredients/${item._id}`,
+        state: { background: location },
+      }}
+      className={itemStyle.link}
+      item={item}
     >
-      <img src={item.image} alt={item.name} />
-      <div className={`${itemStyle.price} mt-2`}>
-        <p className="text text_type_digits-default mr-2">{item.price}</p>
-        <CurrencyIcon type="primary" />
-      </div>
-      <p className={`${itemStyle.caption} text text_type_main-default mt-2`}>
-        {item.name}
-      </p>
-      {counter() > 0 && <Counter count={counter()} size="default" />}
-    </li>
+      <li
+        className={`${itemStyle.item} mb-8`}
+        onClick={handleIngredientDetailsModal}
+        ref={dragRef}
+        draggable
+      >
+        <img src={item.image} alt={item.name} />
+        <div className={`${itemStyle.price} mt-2`}>
+          <p className="text text_type_digits-default mr-2">{item.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={`${itemStyle.caption} text text_type_main-default mt-2`}>
+          {item.name}
+        </p>
+        {counter() > 0 && <Counter count={counter()} size="default" />}
+      </li>
+    </Link>
   );
 };
 

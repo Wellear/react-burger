@@ -1,9 +1,29 @@
 import React from "react";
 import ingredientDetailsStyles from "./ingredient-details.module.css";
-import { itemTypes } from "../../../utils/constns";
 import IngredientInfo from "../ingredient-info/ingredient-info";
+import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useEffect } from 'react';
+import { useSelector } from "react-redux";
 
-const IngredientDetails = ({ item }) => {
+const IngredientDetails = () => {
+  const { id } = useParams();
+  const ingredients = useSelector(
+    (store) => store.burgerIngredients.ingredients
+  );
+  const item = ingredients?.find((item) => item._id === id);
+
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (history.action === "POP")
+      history.replace({ pathname: location.pathname });
+  }, [location.pathname, history]);
+
+  if (!item) {
+    return null;
+  }
+
   return (
     <>
       <h1
@@ -31,10 +51,6 @@ const IngredientDetails = ({ item }) => {
       </div>
     </>
   );
-};
-
-IngredientDetails.propTypes = {
-  item: itemTypes,
 };
 
 export default IngredientDetails;

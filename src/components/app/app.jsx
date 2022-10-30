@@ -1,54 +1,127 @@
 import React from "react";
-import AppHeader from "../app-header/app-header";
 import { useEffect } from "react";
 import styles from "./app.module.css";
+import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-conf/burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../burger-conf/burger-constructor/burger-constructor";
-import IngredientDetails  from "../ingredients-conf/ingredient-details/ingredient-details";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { resetModal } from "../../services/actions/modal";
+import Modal from "../modal-conf/modal/modal";
+import IngredientDetails from "../ingredients-conf/ingredient-details/ingredient-details";
 import { useDispatch, useSelector } from "react-redux";
 import { renderIngredients } from "../../services/actions/burger-ingredients";
-import OrderDetails from "../order-conf/order-details/order-details";
-import Modal from '../modal-conf/modal/modal';
+import OrderDetails from "../burger-constructor/order-details/order-details";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { resetModal } from "../../services/slices/modal";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import LoginPage from "../../pages/login/login";
+import RegisterPage from "../../pages/registration/registration";
+import ForgotPasswordPage from "../../pages/forgot-pass/forgot-pass";
+import ResetPasswordPage from "../../pages/reset-pass/reset-pass";
+import ProfilePage from "../../pages/profile/profile";
+import ProtectedRoute from "../protected-route/protected-route";
+import { getUserAction, updateTokenAction } from "../../services/actions/auth";
+import NotFound from "../../pages/not-found/not-found";
+import Feed from "../../pages/feed/feed";
+import OrderInfo from "../order-conf/order-info/order-info";
+import { getCookie } from "../../utils/cookie";
 
 const App = () => {
   const dispatch = useDispatch();
   const { ingredients, isLoading, hasError } = useSelector(
     (store) => store.burgerIngredients
   );
-  const { isModalOpen, data, type } = useSelector((store) => store.modal);
-  const info = useSelector((store) => store.order.info);
+  const { isModalOpen, type } = useSelector((store) => store.modal);
+  const info = useSelector((store) => store.orderDetails.info);
+
+  const token = localStorage.getItem("refreshToken");
+  const cookie = getCookie("token");
+
+  const location = useLocation();
+  const background = location.state?.background;
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(renderIngredients());
   }, [dispatch]);
 
-  const handleCloseIngredientModal = () => {
+  useEffect(() => {
+    if (!cookie && token) dispatch(updateTokenAction());
+    if (cookie && token) dispatch(getUserAction());
+  }, [dispatch, token, cookie]);
+
+  const handleCloseModal = () => {
     dispatch(resetModal());
+    history.goBack();
   };
 
   return (
     <div className={`${styles.app} custom-scroll app-container`}>
       <AppHeader />
-      <main className={styles.content}>
-        {isLoading && "Загрузка..."}
-        {hasError && "Произошла ошибка"}
-        {!isLoading && !hasError && ingredients.length && (
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </DndProvider>
-        )}
-      </main>
-      {isModalOpen && (
-        <Modal onClose={handleCloseIngredientModal}>
-          {type === "ingredient" ? (
-            <IngredientDetails item={data} />
-          ) : (
-            <OrderDetails orderData={info} />
-          )}
+      <Switch location={background || location}>
+        <Route path="/login" exact>
+          <LoginPage />
+        </Route>
+        <Route path="/registration" exact>
+          <RegisterPage />
+        </Route>
+        <Route path="/forgot-pass" exact>
+          <ForgotPasswordPage />
+        </Route>
+        <Route path="/reset-pass" exact>
+          <ResetPasswordPage />
+        </Route>
+        <ProtectedRoute path="/profile">
+          <ProfilePage />
+        </ProtectedRoute>
+        <Route path="/ingredients/:id" exact>
+          <IngredientDetails />
+        </Route>
+        <Route path="/feed">
+          <Feed />
+        </Route>
+        <Route path="/feed/:id" exact>
+          <OrderInfo />
+        </Route>
+        <Route path="/" exact>
+          <main className={styles.content}>
+            {isLoading && "Загрузка..."}
+            {hasError && "Произошла ошибка"}
+            {!isLoading && !hasError && ingredients.length && (
+              <DndProvider backend={HTML5Backend}>
+                <BurgerIngredients />
+                <BurgerConstructor />
+              </DndProvider>
+            )}
+          </main>
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
+      {background && (
+        <Route path="/ingredients/:id">
+          <Modal onClose={handleCloseModal}>
+            <IngredientDetails />
+          </Modal>
+        </Route>
+      )}
+      {background && (
+        <Route path="/feed/:id" exact>
+          <Modal onClose={handleCloseModal}>
+            <OrderInfo />
+          </Modal>
+        </Route>
+      )}
+      {background && (
+        <ProtectedRoute path="/profile/orders/:id" exact>
+          <Modal onClose={handleCloseModal}>
+            <OrderInfo />
+          </Modal>
+        </ProtectedRoute>
+      )}
+      {isModalOpen && type !== "ingredient" && (
+        <Modal onClose={handleCloseModal}>
+          <OrderDetails orderData={info} />
         </Modal>
       )}
     </div>
