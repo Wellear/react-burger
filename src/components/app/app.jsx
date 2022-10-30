@@ -129,3 +129,13 @@ const App = () => {
 };
 
 export default App;
+/* Не могу решить проблему с токеном. 
+ ./src/components/app/app.jsx 53:34
+ Module parse failed: Unexpected token (53:34)
+ You may need an appropriate loader to handle this file type.
+|   var cookie = getCookie("token");
+|   var location = useLocation();
+>   var background = location.state?.background;
+|   var history = useHistory();
+|   useEffect(function () { 
+*/

@@ -1,3 +1,4 @@
+import React from "react";
 import { Redirect, Route, useLocation } from "react-router-dom";
 import { getCookie } from "../../utils/cookie";
 

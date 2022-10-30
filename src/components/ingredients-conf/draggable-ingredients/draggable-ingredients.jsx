@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import {
   removeFilling,
   swapFilling,
-} from "../../../services/actions/burger-constructor";
+} from "../../../services/slices/burger-constructor";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { itemTypes } from "../../../utils/constns";
@@ -22,20 +22,17 @@ const DraggableIngredients = ({ item, index }) => {
     dispatch(removeFilling(uniqueId));
   };
 
-  const [,drop] = useDrop({
+  const [, drop] = useDrop({
     accept: "item",
-    hover(item) {
-      if (!ref.current) {
+    drop(dragObject) {
+      if (dragObject.index === index) {
         return;
       }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-      dispatch(swapFilling(dragIndex, hoverIndex, item));
-      item.index = hoverIndex;
+      dispatch(swapFilling({ fromIndex: dragObject.index, toIndex: index }));
     },
   });
 
-  const [,drag] = useDrag({
+  const [, drag] = useDrag({
     type: "item",
     item: { ...item, index },
     collect: (monitor) => ({
