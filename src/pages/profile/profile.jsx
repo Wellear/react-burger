@@ -152,6 +152,20 @@ const ProfilePage = () => {
                   onChange={onChange}
                 />
               </div>
+              <div>
+                <Button type="secondary" size="medium" onClick={handleReset} >
+                  Отмена
+                </Button>
+                {!isLoading ? (
+                  <Button type="primary" size="medium">
+                    Сохранить
+                  </Button>
+                ) : (
+                  <Button type="primary" size="medium" disabled >
+                    Сохранение
+                  </Button>
+                )}
+              </div>
             </form>
           )}
         </Route>
