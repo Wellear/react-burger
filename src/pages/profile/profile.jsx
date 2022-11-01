@@ -72,7 +72,7 @@ const ProfilePage = () => {
     e.preventDefault();
     dispatch(updateUserAction(data.name, data.email, data.password));
   };
-
+  
   return (
     <section className={styles.container}>
       <nav className={`${styles.nav} pr-15`}>
@@ -151,20 +151,6 @@ const ProfilePage = () => {
                   name="password"
                   onChange={onChange}
                 />
-              </div>
-              <div>
-                <Button type="secondary" size="medium" onClick={handleReset}>
-                  Отмена
-                </Button>
-                {!isLoading ? (
-                  <Button type="primary" size="medium">
-                    Сохранить
-                  </Button>
-                ) : (
-                  <Button type="primary" size="medium" disabled>
-                    Сохранение...
-                  </Button>
-                )}
               </div>
             </form>
           )}

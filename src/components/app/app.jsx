@@ -14,9 +14,9 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 import { resetModal } from "../../services/slices/modal";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import LoginPage from "../../pages/login/login";
-import RegisterPage from "../../pages/registration/registration";
-import ForgotPasswordPage from "../../pages/forgot-pass/forgot-pass";
-import ResetPasswordPage from "../../pages/reset-pass/reset-pass";
+import RegisterPage from "../../pages/register/register";
+import ForgotPasswordPage from "../../pages/forgot-password/forgot-password";
+import ResetPasswordPage from "../../pages/reset-password/reset-password";
 import ProfilePage from "../../pages/profile/profile";
 import ProtectedRoute from "../protected-route/protected-route";
 import { getUserAction, updateTokenAction } from "../../services/actions/auth";
@@ -61,13 +61,13 @@ const App = () => {
         <Route path="/login" exact>
           <LoginPage />
         </Route>
-        <Route path="/registration" exact>
+        <Route path="/register" exact>
           <RegisterPage />
         </Route>
-        <Route path="/forgot-pass" exact>
+        <Route path="/forgot-password" exact>
           <ForgotPasswordPage />
         </Route>
-        <Route path="/reset-pass" exact>
+        <Route path="/reset-password" exact>
           <ResetPasswordPage />
         </Route>
         <ProtectedRoute path="/profile">
@@ -129,13 +129,4 @@ const App = () => {
 };
 
 export default App;
-/* Не могу решить проблему с токеном. 
- ./src/components/app/app.jsx 53:34
- Module parse failed: Unexpected token (53:34)
- You may need an appropriate loader to handle this file type.
-|   var cookie = getCookie("token");
-|   var location = useLocation();
->   var background = location.state?.background;
-|   var history = useHistory();
-|   useEffect(function () { 
-*/
+

@@ -25,10 +25,9 @@ const LoginPage = () => {
     setValues({});
     dispatch(signInAction(email, password));
   };
+  
 
-  return cookie ? (
-    <Redirect to={location.state.from || "/"} />
-  ) : (
+  return (cookie) ? (<Redirect to={location.state && location.state.from || '/'}/>) : (
     <section className={styles.container}>
       <h2 className="text text_type_main-medium mb-6">Вход</h2>
       <form className={styles.form} onSubmit={onSubmit}>
