@@ -11,12 +11,10 @@
 }
 
 .button {
-  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
   border: none;
   cursor: pointer;
-  padding: 8px;
-  line-height: 0;
-  position: absolute;
-  right: 32px;
-  top: 52px;
 }
