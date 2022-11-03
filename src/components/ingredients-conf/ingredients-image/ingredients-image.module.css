@@ -1,0 +1,17 @@
+.imageContainer {
+  padding: 2px;
+  background: linear-gradient(to right, #801ab2, #4c4cff);
+  border-radius: 50%;
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.image {
+  display: block;
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: var(--background-alt);
+}
