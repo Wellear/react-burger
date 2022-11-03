@@ -52,6 +52,7 @@ const ProfilePage = () => {
   }, [email, name]);
   const [isFormEdited, setFormEdited] = useState(false)
   const onChange = (e) => {
+  
     setFormEdited(true)
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -159,7 +160,7 @@ const ProfilePage = () => {
                   Отмена
                 </Button>
                 {!isLoading ? (
-                  <Button type="primary" size="medium">
+                  <Button type="primary" size="medium" onClick={() => {setFormEdited(false)}}>
                     Сохранить
                   </Button>
                 ) : (
