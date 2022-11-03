@@ -50,8 +50,9 @@ const ProfilePage = () => {
       password: "",
     });
   }, [email, name]);
-
+  const [isFormEdited, setFormEdited] = useState(false)
   const onChange = (e) => {
+    setFormEdited(true)
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
@@ -152,12 +153,13 @@ const ProfilePage = () => {
                   onChange={onChange}
                 />
               </div>
+              {isFormEdited && (
               <div>
                 <Button type="secondary" size="medium" onClick={handleReset} >
                   Отмена
                 </Button>
                 {!isLoading ? (
-                  <Button type="primary" size="medium">
+                  <Button type="primary" size="medium" id="hider">
                     Сохранить
                   </Button>
                 ) : (
@@ -165,7 +167,8 @@ const ProfilePage = () => {
                     Сохранение
                   </Button>
                 )}
-              </div>
+                
+              </div>)}
             </form>
           )}
         </Route>
