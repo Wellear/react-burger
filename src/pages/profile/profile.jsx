@@ -159,7 +159,7 @@ const ProfilePage = () => {
                   Отмена
                 </Button>
                 {!isLoading ? (
-                  <Button type="primary" size="medium" id="hider">
+                  <Button type="primary" size="medium">
                     Сохранить
                   </Button>
                 ) : (
